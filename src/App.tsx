@@ -10,14 +10,11 @@ import type { ScreenViewport } from "@itwin/core-frontend";
 import { FitViewTool, IModelApp, StandardViewId } from "@itwin/core-frontend";
 import { FillCentered } from "@itwin/core-react";
 import { ProgressLinear } from "@itwin/itwinui-react";
-import {
-  useAccessToken,
-  Viewer,
-  ViewerPerformance,
-} from "@itwin/web-viewer-react";
+import {useAccessToken, Viewer, ViewerPerformance} from "@itwin/web-viewer-react";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-
 import { history } from "./history";
+import { ECSchemaRpcInterface } from "@itwin/ecschema-rpcinterface-common";
+import { ValidationUiItemsProvider } from "./providers/ValidationUiItemsProvider";
 
 const App: React.FC = () => {
   const [iModelId, setIModelId] = useState(process.env.IMJS_IMODEL_ID);
@@ -137,6 +134,10 @@ const App: React.FC = () => {
         iModelId={iModelId}
         authClient={authClient}
         viewCreatorOptions={viewCreatorOptions}
+        // UI items provider for custom validation widgets.
+        uiProviders={[new ValidationUiItemsProvider()]}
+        // ECSchema RPC interface for quantity unit conversion (see Utils.ts).
+        additionalRpcInterfaces={[ECSchemaRpcInterface]}
         enablePerformanceMonitors={true} // see description in the README (https://www.npmjs.com/package/@itwin/desktop-viewer-react)
       />
     </div>

@@ -1,82 +1,69 @@
-# Getting Started with the iTwin Viewer Create React App Template
+# Insulation Validation App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is part of the iTwin.js validation API accreditation course. Please click here to access the full course content. This documentation provides a high-level overview of the validation app designed in the course. The key focus is how the custom UI components interact with the validation API.
 
-## Environment Variables
+The application is built on top the iTwin-Viewer which is a starter template for creating your own custom iTwin experience.
 
-Prior to running the app, you will need to add OIDC client configuration to the variables in the .env file:
+## Additional Dependencies
 
-```
-# ---- Authorization Client Settings ----
-IMJS_AUTH_CLIENT_CLIENT_ID=""
-IMJS_AUTH_CLIENT_REDIRECT_URI=""
-IMJS_AUTH_CLIENT_LOGOUT_URI=""
-IMJS_AUTH_CLIENT_SCOPES =""
-```
+In addition to cloning the iTwin-Viewer, this app requires the following dependencies:
 
-- You can generate a [test client](https://developer.bentley.com/tutorials/web-application-quick-start/#2-register-an-application) to get started.
-
-- When you are ready to build a production application, [register here](https://developer.bentley.com/register/).
-
-You should also add a valid iTwinId and iModelId for your user in the this file:
-
-```
-# ---- Test ids ----
-IMJS_ITWIN_ID = ""
-IMJS_IMODEL_ID = ""
+```"@itwin/itwinui-react": "^1.40.0",
+"@itwin/itwinui-react": "^1.40.0",
+"@itwin/property-validation-client": "^0.3.1",
+"@itwin/ecschema-rpcinterface-common": "^3.1.3",
+"date-fns": "^2.28.0",
 ```
 
-- For the IMJS_ITWIN_ID variable, you can use the id of one of your existing Projects or Assets. You can obtain their ids via the [Administration REST APIs](https://developer.bentley.com/api-groups/administration/api-reference/).
+## Overview
 
-- For the IMJS_IMODEL_ID variable, use the id of an iModel that belongs to the iTwin that you specified in the IMJS_ITWIN_ID variable. You can obtain iModel ids via the [Data Management REST APIs](https://developer.bentley.com/api-groups/data-management/apis/imodels/operations/get-project-or-asset-imodels/).
+The ValidationUIItemsProvider provides two custom widgets to support validation workflow:
 
-- Alternatively, you can [generate a test iModel](https://developer.bentley.com/tutorials/web-application-quick-start/#3-create-an-imodel) to get started without an existing iModel.
+- ValidationTestWidget (right panel).
 
-- If at any time you wish to change the iModel that you are viewing, you can change the values of the iTwinId or iModelId query parameters in the url (i.e. localhost:3000?iTwinId=myNewITwinId&iModelId=myNewIModelId)
+![image-20220623105314849](.\right_panel)
 
-## Available Scripts
+- ValidationResultWidget (bottom panel).
 
-In the project directory, you can run:
+![image-20220622170844583](.\bottom_panel)
 
-### `npm start`
+These widgets interact with the validation API in the following ways:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### ValidationTestWidget
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Fetches list of tests
+- Fetches list of runs
+- Fetches list of rules (for test creation)
+- Creates tests
+- Creates rules
+- Runs tests
+- Polls for run status
+- Fetches run result
 
-### `npm test`
+### ValidationResultWidget
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Receives results from ValidationTestWidget
+- Fetches list of rules (to present with result)
 
-### `npm run build`
+### Other classes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1) ValidationLink: Leverages property-validation-client to make calls into the validation API.
+2) iTwinLink: Queries iModel to get list of graphical elements associated with each pipeline.
+3) Utils: Uses quantity formatter for unit conversion.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### iTwin UI Components used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Table
+- Modal
+- Button
+- Input
+- ProgressRadial
+- Select
 
-### `npm run eject`
+## Walkthrough
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The entry-point for the code is the Viewer component under the App.tsx. It takes in UIItemsProviders to provide custom widgets to extend the iTwin Viewer. More information on how to add widgets to the iTwinViewer can be found here (TK - insert link). In this case, the ValidationUIItemsProvider provides widgets that are located in the right and bottom panels of the app.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1) ValidationTestWidget (right): This widget acts as the entry-point for the validation workflow. It provides the ability to create new tests, rules, and runs. For creating new tests and rules, it uses modal menus that are presented when the "Create Test" button is clicked. Below this button all the validation tests and runs are listed. Once a test has been run, a view button is presented next to the run. This button fetches the run result data and sends it to the ValidationResultsWidget.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Next Steps
-
-- [iTwin Viewer options](https://www.npmjs.com/package/@itwin/web-viewer-react)
-
-- [Extending the iTwin Viewer](https://www.itwinjs.org/learning/tutorials/hello-world-viewer/)
-
-- [Using the iTwin Platform](https://developer.bentley.com/)
-
-- [iTwin Developer Program](https://www.youtube.com/playlist?list=PL6YCKeNfXXd_dXq4u9vtSFfsP3OTVcL8N)
+2) ValidationResultsWidget (bottom): The result widget receives the result from the test widget, and presents it in the form of a table. It also takes the elements ids of the pipelines that failed the validation test, sorts them based on issue type (insulation too high or too low), and colorizes the graphical elements associated with them using the emphasize and colorize APIs.
