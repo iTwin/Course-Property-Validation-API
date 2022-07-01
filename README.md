@@ -21,11 +21,11 @@ The ValidationUIItemsProvider provides two custom widgets to support validation 
 
 - ValidationTestWidget (right panel).
 
-![image-20220623105314849](./right_panel)
+![image-20220623105314849](./right_panel.png)
 
 - ValidationResultWidget (bottom panel).
 
-![image-20220622170844583](./bottom_panel)
+![image-20220622170844583](./bottom_panel.png)
 
 These widgets interact with the validation API in the following ways:
 

@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+
 import { Modal, Button, Input, Table, ProgressRadial } from "@itwin/itwinui-react";
 import React, { useMemo } from "react";
 import ValidationLink from "../../ValidationLink";
@@ -6,7 +11,7 @@ import { formatRelative } from "date-fns"
 import { NewRuleComponent } from "./NewRuleComponent";
 import { IModelApp } from "@itwin/core-frontend";
 import { ResponseFromGetResult, RuleDetails, RunDetails, TestItem } from "@itwin/property-validation-client";
-require("./ui.css")
+import "./ui.css";
 
 // Widget for creating and running tests. Also presents modal for creating new rules.
 export function ValidationTestWidget() {

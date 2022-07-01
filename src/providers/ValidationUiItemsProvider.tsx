@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+
 import { UiItemsProvider, StagePanelLocation, StagePanelSection, AbstractWidgetProps } from "@itwin/appui-abstract";
 import { ValidationResultsWidget } from "./widgets/ValidationResultsWidget";
 import { ValidationTestWidget } from "./widgets/ValidationTestWidget";

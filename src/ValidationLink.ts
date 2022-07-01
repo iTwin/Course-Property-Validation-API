@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+
 import { IModelApp } from "@itwin/core-frontend";
 import { ParamsToCreateRule, ParamsToCreateTest, ParamsToGetResult, ParamsToGetRuleList, ParamsToGetRunList, ParamsToGetTemplateList, ParamsToGetTestList, ParamsToRunTest, PropertyValidationClient, ResponseFromGetResult, Rule, RuleDetails, RuleTemplate, Run, RunDetails, Test, TestItem } from "@itwin/property-validation-client";
 import Utils from "./Utils";
