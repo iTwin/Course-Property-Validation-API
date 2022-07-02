@@ -2,7 +2,7 @@
 
 This repository is part of the iTwin.js validation API accreditation course. Please click here to access the full course content. This documentation provides a high-level overview of the validation app designed in the course. The key focus is how the custom UI components interact with the validation API.
 
-The application is built on top the iTwin-Viewer which is a starter template for creating your own custom iTwin experience.
+The application is built on top the [iTwin Viewer](https://developer.bentley.com/tutorials/web-application-quick-start#2-get-the-code) which is a starter template for creating your own custom iTwin experience.
 
 ## Additional Dependencies
 
@@ -17,13 +17,13 @@ In addition to cloning the iTwin-Viewer, this app requires the following depende
 
 ## Overview
 
-The ValidationUIItemsProvider provides two custom widgets to support validation workflow:
+The [ValidationUIItemsProvider](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/ValidationUiItemsProvider.tsx) provides two custom widgets to support validation workflow:
 
-- ValidationTestWidget (right panel).
+- [ValidationTestWidget](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx) (right panel).
 
 ![image-20220623105314849](./right_panel.png)
 
-- ValidationResultWidget (bottom panel).
+- [ValidationResultsWidget](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx) (bottom panel).
 
 ![image-20220622170844583](./bottom_panel.png)
 
@@ -31,38 +31,38 @@ These widgets interact with the validation API in the following ways:
 
 ### ValidationTestWidget
 
-- Fetches list of tests
-- Fetches list of runs
-- Fetches list of rules (for test creation)
-- Creates tests
-- Creates rules
-- Runs tests
-- Polls for run status
-- Fetches run result
+- [Fetches list of tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L55)
+- [Fetches list of runs](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L56)
+- [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L132) (for test creation)
+- [Creates tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L145)
+- [Creates rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/NewRuleComponent.tsx#L43)
+- [Runs tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L126)
+- [Polls for run status](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L114)
+- [Fetches run result](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L119)
 
 ### ValidationResultWidget
 
-- Receives results from ValidationTestWidget
-- Fetches list of rules (to present with result)
+- [Receives results](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx#L136) from ValidationTestWidget
+- [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx#L140) (to present with result)
 
 ### Other classes
 
-1) ValidationLink: Leverages property-validation-client to make calls into the validation API.
-2) iTwinLink: Queries iModel to get list of graphical elements associated with each pipeline.
-3) Utils: Uses quantity formatter for unit conversion.
+1) [ValidationLink](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/ValidationLink.ts): Leverages property-validation-client to make calls into the validation API.
+2) [iTwinLink](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/iTwinLink.ts): Queries iModel to get list of graphical elements associated with each pipeline.
+3) [Utils](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/Utils.ts): Uses quantity formatter for unit conversion.
 
 ### iTwin UI Components used
 
-- Table
-- Modal
-- Button
-- Input
-- ProgressRadial
-- Select
+- [Table](https://itwin.github.io/iTwinUI-react/?path=/docs/core-table--expandable-subrows)
+- [Modal](https://itwin.github.io/iTwinUI-react/?path=/docs/core-modal--basic)
+- [Button](https://itwin.github.io/iTwinUI-react/?path=/docs/buttons-button--call-to-action)
+- [Input](https://itwin.github.io/iTwinUI-react/?path=/docs/input-input--basic)
+- [ProgressRadial](https://itwin.github.io/iTwinUI-react/?path=/docs/progressindicators-progressradial--determinate)
+- [Select](https://itwin.github.io/iTwinUI-react/?path=/docs/input-select--basic)
 
 ## Walkthrough
 
-The entry-point for the code is the Viewer component under the App.tsx. It takes in UIItemsProviders to provide custom widgets to extend the iTwin Viewer. More information on how to add widgets to the iTwinViewer can be found here (TK - insert link). In this case, the ValidationUIItemsProvider provides widgets that are located in the right and bottom panels of the app.
+The entry-point for the code is the Viewer component under the App.tsx. It takes in UIItemsProviders to provide custom widgets to extend the iTwin Viewer. More information on how to add widgets to the iTwinViewer can be found [here](https://www.youtube.com/watch?v=pzyHYtUxy4w&list=PL6YCKeNfXXd_dXq4u9vtSFfsP3OTVcL8N&index=39). In this case, the ValidationUIItemsProvider provides widgets that are located in the right and bottom panels of the app.
 
 1) ValidationTestWidget (right): This widget acts as the entry-point for the validation workflow. It provides the ability to create new tests, rules, and runs. For creating new tests and rules, it uses modal menus that are presented when the "Create Test" button is clicked. Below this button all the validation tests and runs are listed. Once a test has been run, a view button is presented next to the run. This button fetches the run result data and sends it to the ValidationResultsWidget.
 
