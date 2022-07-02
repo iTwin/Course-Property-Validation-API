@@ -67,3 +67,7 @@ The entry-point for the code is the Viewer component under the App.tsx. It takes
 1) ValidationTestWidget (right): This widget acts as the entry-point for the validation workflow. It provides the ability to create new tests, rules, and runs. For creating new tests and rules, it uses modal menus that are presented when the "Create Test" button is clicked. Below this button all the validation tests and runs are listed. Once a test has been run, a view button is presented next to the run. This button fetches the run result data and sends it to the ValidationResultsWidget.
 
 2) ValidationResultsWidget (bottom): The result widget receives the result from the test widget, and presents it in the form of a table. It also takes the elements ids of the pipelines that failed the validation test, sorts them based on issue type (insulation too high or too low), and colorizes the graphical elements associated with them using the emphasize and colorize APIs.
+
+## Data
+
+The example dataset this application uses in the course can be found [here](https://github.com/iTwin/Course-Property-Validation-API/tree/main/data). Please use the [iTwin Synchronizer](https://www.bentley.com/en/resources/itwin-synchronizer) to prepare a personal copy of the iTwin (if following along). Tutorial on how to do the same can be found [here](https://www.youtube.com/watch?v=TBuYGyI1BL8&list=PL6YCKeNfXXd_dXq4u9vtSFfsP3OTVcL8N&index=7).
