@@ -115,7 +115,7 @@ export function ValidationResultsWidget () {
                 });
             }
 
-            // clear (any) previous colorizations, and color cost/safety issue elements as blue/red respectively.
+            // clear (any) previous colorization, and color cost/safety issue elements as blue/red respectively.
             const vp = IModelApp.viewManager.selectedView!;
             const emph = EmphasizeElements.getOrCreate(vp);
             emph.clearOverriddenElements(vp);
@@ -131,7 +131,7 @@ export function ValidationResultsWidget () {
         prepareTableData();
     }, [validationData, pipelines]);
 
-    // callback method on iModelApp to recieve new result data.
+    // callback method on iModelApp to receive new result data.
     useEffect(() => {
         (IModelApp as any).validationDataChanged = async (data: ResponseFromGetResult) => {
             const validationData: any = data;
