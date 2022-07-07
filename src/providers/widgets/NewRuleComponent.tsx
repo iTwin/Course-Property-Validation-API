@@ -20,7 +20,7 @@ export const NewRuleComponent: React.FC<{ruleAdded: () => {}}> = ({ ruleAdded })
         value: string;
     } | undefined>();
 
-    // list of insuation materials along with their iModel values.
+    // list of insulation materials along with their iModel values.
     const materialOptions = [
         { label: "Arnosite Asbestos", value: "ARNOSITE_ASBESTOS"},
         { label: "Calcium Silicate", value: "CALCIUM_SILICATE"},

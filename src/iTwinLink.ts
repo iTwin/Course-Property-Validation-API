@@ -24,7 +24,7 @@ export class ITwinLink {
 
             /* In the Open_Plant_3d schema - The actual pipe geometry of a Pipeline (Piping_Network_System) 
             is stored as Piping_Components. Piping_Components are children of Pipe_Network_Segments, 
-            which are children of the Pipline component.
+            which are children of the Pipeline component.
 
                 (Piping_Network_System (Pipeline) --> Piping_Network_Segments --> Piping_Components)
 
