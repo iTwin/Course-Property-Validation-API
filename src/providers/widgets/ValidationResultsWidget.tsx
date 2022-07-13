@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import React, { useEffect, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { Table } from "@itwin/itwinui-react";
 import ValidationLink from "../../ValidationLink";
 import { ITwinLink, Pipeline } from "../../iTwinLink";
@@ -11,6 +11,7 @@ import { EmphasizeElements, IModelApp } from "@itwin/core-frontend";
 import { ColorDef } from "@itwin/core-common";
 import { ResponseFromGetResult, RuleDetails } from "@itwin/property-validation-client";
 import Utils from "../../Utils";
+import { AppContext } from "../../App";
 
 interface ValidationData extends ResponseFromGetResult {
   ruleData: {[key: string]: RuleDetails}
@@ -25,6 +26,8 @@ export function ValidationResultsWidget () {
     const [tableData, setTableData] = React.useState<any>();
     // pipelines that failed validation test.
     const [pipelines, setPipelines] = React.useState<Pipeline[]>();
+    // app context state variable for storing latest result.
+    const {result} = useContext(AppContext);
 
     // fetch list of all pipelines from iModel.
     React.useEffect(() => {
@@ -131,21 +134,23 @@ export function ValidationResultsWidget () {
         prepareTableData();
     }, [validationData, pipelines]);
 
-    // callback method on iModelApp to receive new result data.
-    useEffect(() => {
-        (IModelApp as any).validationDataChanged = async (data: ResponseFromGetResult) => {
-            const validationData: any = data;
+    // method to parse result when updated on app context.
+    React.useEffect(() => {
+        const parseResult = async (resultData: ResponseFromGetResult) => {
+            const validationData: any = resultData;
             const ruleData: any = [];
             // fetch rule data to add to result data.
             const rules: RuleDetails[] = await ValidationLink.getRules();
-            for (const rule of data.ruleList) {
+            for (const rule of resultData.ruleList) {
                 const data: RuleDetails = rules.filter((ruleDetails: RuleDetails) => ruleDetails.id  === rule.id )[0];
                 ruleData[rule.id] = data;
             }
             validationData.ruleData = ruleData;
             setValidationData(validationData);
         }
-    });
+        if (result) 
+            parseResult(result);
+    }, [result]);
 
     // when table row clicked, zoom into pipeline with issue.
     const onRowClicked = async (_rows: any, state: any) => {

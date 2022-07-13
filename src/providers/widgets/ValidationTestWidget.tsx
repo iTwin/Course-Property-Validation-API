@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { Modal, Button, Input, Table, ProgressRadial } from "@itwin/itwinui-react";
-import React, { useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import ValidationLink from "../../ValidationLink";
 import { ValidationRuleTable } from "./ValidationRuleTable";
 import { formatRelative } from "date-fns"
 import { NewRuleComponent } from "./NewRuleComponent";
-import { IModelApp } from "@itwin/core-frontend";
 import { ResponseFromGetResult, RuleDetails, RunDetails, TestItem } from "@itwin/property-validation-client";
 import "./ui.css";
+import { AppContext } from "../../App";
 
 // Widget for creating and running tests. Also presents modal for creating new rules.
 export function ValidationTestWidget() {
@@ -25,6 +25,8 @@ export function ValidationTestWidget() {
     const [showNewTestModal, setShowNewTestModal] = React.useState<boolean>(false);
     // state variable for displaying "New Rule" modal. 
     const [addNewRule, setAddNewRule] = React.useState<boolean>(false);
+    // app context callback for setting result.
+    const {setResultData} = useContext(AppContext);
 
     // columns for Test table component.
     const columns = useMemo(() => [{
@@ -115,11 +117,12 @@ export function ValidationTestWidget() {
     }
 
     // Fetch validation results. Entry-point into ValidationResultsWidget
-    const updateValidationResults = async (resultId: string) => {
+    const updateValidationResults = useCallback (async (resultId: string) => {
         const resultData: ResponseFromGetResult = await ValidationLink.getResult(resultId);
-        // Callback method on iModelApp to notify ValidationResultsWidget.
-        (IModelApp as any).validationDataChanged(resultData);
-    }
+        // set resultData on app context.
+        if(setResultData)
+            setResultData(resultData);
+    }, [setResultData])
 
     // Run validation test, and fetch latest data for run status.
     const runValidationTest = async (testId: string) => {
