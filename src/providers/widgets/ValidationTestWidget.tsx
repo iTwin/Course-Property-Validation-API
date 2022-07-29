@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { Modal, Button, Input, Table, ProgressRadial } from "@itwin/itwinui-react";
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import ValidationLink from "../../ValidationLink";
 import { ValidationRuleTable } from "./ValidationRuleTable";
 import { formatRelative } from "date-fns"
 import { NewRuleComponent } from "./NewRuleComponent";
 import { ResponseFromGetResult, RuleDetails, RunDetails, TestItem } from "@itwin/property-validation-client";
 import "./ui.css";
-import { AppContext } from "../../App";
+import { useSetValidationState } from "../../StateProvider";
 
 // Widget for creating and running tests. Also presents modal for creating new rules.
 export function ValidationTestWidget() {
@@ -26,7 +26,7 @@ export function ValidationTestWidget() {
     // state variable for displaying "New Rule" modal. 
     const [addNewRule, setAddNewRule] = React.useState<boolean>(false);
     // app context callback for setting result.
-    const {setResultData} = useContext(AppContext);
+    const setResultData = useSetValidationState();
 
     // columns for Test table component.
     const columns = useMemo(() => [{
