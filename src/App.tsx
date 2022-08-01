@@ -15,24 +15,12 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { history } from "./history";
 import { ECSchemaRpcInterface } from "@itwin/ecschema-rpcinterface-common";
 import { ValidationUiItemsProvider } from "./providers/ValidationUiItemsProvider";
-import { ResponseFromGetResult } from "@itwin/property-validation-client";
+import { GenericStateProvider } from "./StateProvider";
 
-interface AppContextValue {
-    result?: ResponseFromGetResult,
-    setResultData?: Function
-}
-
-export const AppContext = React.createContext<AppContextValue>({});
 
 const App: React.FC = () => {
   const [iModelId, setIModelId] = useState(process.env.IMJS_IMODEL_ID);
   const [iTwinId, setITwinId] = useState(process.env.IMJS_ITWIN_ID);
-  const [result, setResult] = useState<ResponseFromGetResult | undefined>();
-
-  const value: AppContextValue = {
-    result,
-    setResultData: (resultData: ResponseFromGetResult) => setResult(resultData)
-  }
 
   const accessToken = useAccessToken();
 
@@ -143,19 +131,19 @@ const App: React.FC = () => {
           </div>
         </FillCentered>
       )}
-        <AppContext.Provider value={value}>
-            <Viewer
-                iTwinId={iTwinId}
-                iModelId={iModelId}
-                authClient={authClient}
-                viewCreatorOptions={viewCreatorOptions}
-                // UI items provider for custom validation widgets.
-                uiProviders={[new ValidationUiItemsProvider()]}
-                // ECSchema RPC interface for quantity unit conversion (see Utils.ts).
-                additionalRpcInterfaces={[ECSchemaRpcInterface]}
-                enablePerformanceMonitors={true} // see description in the README (https://www.npmjs.com/package/@itwin/desktop-viewer-react)
-            />
-        </AppContext.Provider>
+      <GenericStateProvider>
+        <Viewer
+          iTwinId={iTwinId}
+          iModelId={iModelId}
+          authClient={authClient}
+          viewCreatorOptions={viewCreatorOptions}
+          // UI items provider for custom validation widgets.
+          uiProviders={[new ValidationUiItemsProvider()]}
+          // ECSchema RPC interface for quantity unit conversion (see Utils.ts).
+          additionalRpcInterfaces={[ECSchemaRpcInterface]}
+          enablePerformanceMonitors={true} // see description in the README (https://www.npmjs.com/package/@itwin/desktop-viewer-react)
+        />
+      </GenericStateProvider>
     </div>
   );
 };
