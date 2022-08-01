@@ -15,6 +15,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { history } from "./history";
 import { ECSchemaRpcInterface } from "@itwin/ecschema-rpcinterface-common";
 import { ValidationUiItemsProvider } from "./providers/ValidationUiItemsProvider";
+import { GenericStateProvider } from "./StateProvider";
+
 
 const App: React.FC = () => {
   const [iModelId, setIModelId] = useState(process.env.IMJS_IMODEL_ID);
@@ -129,17 +131,19 @@ const App: React.FC = () => {
           </div>
         </FillCentered>
       )}
-      <Viewer
-        iTwinId={iTwinId}
-        iModelId={iModelId}
-        authClient={authClient}
-        viewCreatorOptions={viewCreatorOptions}
-        // UI items provider for custom validation widgets.
-        uiProviders={[new ValidationUiItemsProvider()]}
-        // ECSchema RPC interface for quantity unit conversion (see Utils.ts).
-        additionalRpcInterfaces={[ECSchemaRpcInterface]}
-        enablePerformanceMonitors={true} // see description in the README (https://www.npmjs.com/package/@itwin/desktop-viewer-react)
-      />
+      <GenericStateProvider>
+        <Viewer
+          iTwinId={iTwinId}
+          iModelId={iModelId}
+          authClient={authClient}
+          viewCreatorOptions={viewCreatorOptions}
+          // UI items provider for custom validation widgets.
+          uiProviders={[new ValidationUiItemsProvider()]}
+          // ECSchema RPC interface for quantity unit conversion (see Utils.ts).
+          additionalRpcInterfaces={[ECSchemaRpcInterface]}
+          enablePerformanceMonitors={true} // see description in the README (https://www.npmjs.com/package/@itwin/desktop-viewer-react)
+        />
+      </GenericStateProvider>
     </div>
   );
 };
