@@ -132,8 +132,7 @@ export default class ValidationLink {
 
         const params: ParamsToRunTest = {
             testId,
-            iModelId: process.env.IMJS_IMODEL_ID!,
-            namedVersionId: "00f8a265-2cef-49e2-8cb3-49bb86d203a8"
+            iModelId: process.env.IMJS_IMODEL_ID!
         }
 
         return ValidationLink.client.tests.runTest(params);
