@@ -15,7 +15,7 @@ export default class ValidationLink {
 
     private static async getAccessToken(): Promise<string> {
         if (!IModelApp.authorizationClient)
-            throw new Error("Auth client is not defined. Most likely the iModelApp.startup was not called.");
+            throw new Error("Auth client is not defined.");
 
             return IModelApp.authorizationClient.getAccessToken();
     }
@@ -132,7 +132,8 @@ export default class ValidationLink {
 
         const params: ParamsToRunTest = {
             testId,
-            iModelId: process.env.IMJS_IMODEL_ID!
+            iModelId: process.env.IMJS_IMODEL_ID!,
+            namedVersionId: "00f8a265-2cef-49e2-8cb3-49bb86d203a8"
         }
 
         return ValidationLink.client.tests.runTest(params);

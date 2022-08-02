@@ -10,7 +10,7 @@ import { ValidationTestWidget } from "./widgets/ValidationTestWidget";
 // Provides custom widgets to support validation workflow.
 export class ValidationUiItemsProvider implements UiItemsProvider {
   public readonly id = "ValidationUiProvider";
-  
+
   public provideWidgets(stageId: string, _stageUsage: string, location: StagePanelLocation, _section?: StagePanelSection | undefined): readonly AbstractWidgetProps[] {
     const widgets: AbstractWidgetProps[] = [];
 
@@ -21,9 +21,9 @@ export class ValidationUiItemsProvider implements UiItemsProvider {
         id: "runValidationTests",
         label: "Validation Tests",
         getWidgetContent: () => {
-          return (<ValidationTestWidget/>);
-        }
-      }
+          return <ValidationTestWidget />;
+        },
+      };
 
       widgets.push(testWidget);
     }
@@ -35,13 +35,13 @@ export class ValidationUiItemsProvider implements UiItemsProvider {
         id: "viewValidationResults",
         label: "Validation Results",
         getWidgetContent: () => {
-          return (<ValidationResultsWidget/>);
-        }
-      }
+          return <ValidationResultsWidget />;
+        },
+      };
 
       widgets.push(widget);
     }
 
     return widgets;
-  };
+  }
 }

@@ -9,10 +9,7 @@ import ValidationLink from "../../ValidationLink";
 import { ITwinLink, Pipeline } from "../../iTwinLink";
 import { EmphasizeElements, IModelApp } from "@itwin/core-frontend";
 import { ColorDef } from "@itwin/core-common";
-import {
-  ResponseFromGetResult,
-  RuleDetails,
-} from "@itwin/property-validation-client";
+import { ResponseFromGetResult, RuleDetails } from "@itwin/property-validation-client";
 import Utils from "../../Utils";
 import { useGetValidationState } from "../../StateProvider";
 
@@ -101,9 +98,9 @@ export function ValidationResultsWidget() {
         );
         let issue = "";
 
-        if (pipeline && ruleData) {
+        if (pipeline && ruleData && ruleData.functionParameters.lowerBound) {
           // if bad value less than lower bound number, tag issue as "Insulation too low". Add pipe elements to safety issue list.
-          if (result.badValue < ruleData?.functionParameters.lowerBound!) {
+          if (result.badValue < ruleData.functionParameters.lowerBound) {
             safetyElements = safetyElements.concat(pipeline.pipes);
             issue = "Insulation too low";
           }
