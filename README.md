@@ -1,6 +1,6 @@
 # Insulation Validation App
 
-This repository is part of the iTwin.js validation API accreditation course. Please click here to access the full course content. This documentation provides a high-level overview of the validation app designed in the course. The key focus is how the custom UI components interact with the validation API.
+This repository is part of the iTwin Platform Validation API course. Please click [here](https://education.bentley.com/LearningPaths/guided-learningpaths-635082) to access the full course content. This documentation provides a high-level overview of the validation app designed in the course. The key focus is how the custom UI components interact with the validation API.
 
 The application is built on top the [iTwin Viewer](https://developer.bentley.com/tutorials/web-application-quick-start#2-get-the-code) which is a starter template for creating your own custom iTwin experience.
 
@@ -12,6 +12,7 @@ In addition to cloning the iTwin-Viewer, this app requires the following depende
 "@itwin/itwinui-react": "^1.40.0",
 "@itwin/property-validation-client": "^0.3.1",
 "@itwin/ecschema-rpcinterface-common": "^3.1.3",
+"@itwin/ecschema-metadata": "^3.1.3",
 "date-fns": "^2.28.0",
 ```
 
