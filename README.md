@@ -32,19 +32,19 @@ These widgets interact with the validation API in the following ways:
 
 ### ValidationTestWidget
 
-- [Fetches list of tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L55)
-- [Fetches list of runs](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L56)
-- [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L132) (for test creation)
-- [Creates tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L145)
-- [Creates rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/NewRuleComponent.tsx#L43)
+- [Fetches list of tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L67)
+- [Fetches list of runs](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L68)
+- [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L162) (for test creation)
+- [Creates tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L176)
+- [Creates rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/NewRuleComponent.tsx#L48)
 - [Runs tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L126)
-- [Polls for run status](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L114)
-- [Fetches run result](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L119)
+- [Polls for run status](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L139)
+- [Fetches run result](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L145)
 
 ### ValidationResultWidget
 
-- [Receives results](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx#L136) from ValidationTestWidget
-- [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx#L140) (to present with result)
+- [Receives results](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx#L159) from ValidationTestWidget
+- [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationResultsWidget.tsx#L163) (to present with result)
 
 ### Other classes
 
