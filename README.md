@@ -37,7 +37,7 @@ These widgets interact with the validation API in the following ways:
 - [Fetches list of rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L162) (for test creation)
 - [Creates tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L176)
 - [Creates rules](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/NewRuleComponent.tsx#L48)
-- [Runs tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L126)
+- [Runs tests](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L156)
 - [Polls for run status](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L139)
 - [Fetches run result](https://github.com/iTwin/Course-Property-Validation-API/blob/main/src/providers/widgets/ValidationTestWidget.tsx#L145)
 
