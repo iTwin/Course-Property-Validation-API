@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { UiItemsProvider, StagePanelLocation, StagePanelSection, AbstractWidgetProps } from "@itwin/appui-abstract";
+import { UiItemsProvider, StagePanelLocation, StagePanelSection, Widget } from "@itwin/appui-react";
 import { ValidationResultsWidget } from "./widgets/ValidationResultsWidget";
 import { ValidationTestWidget } from "./widgets/ValidationTestWidget";
 
@@ -11,32 +11,28 @@ import { ValidationTestWidget } from "./widgets/ValidationTestWidget";
 export class ValidationUiItemsProvider implements UiItemsProvider {
   public readonly id = "ValidationUiProvider";
 
-  public provideWidgets(stageId: string, _stageUsage: string, location: StagePanelLocation, _section?: StagePanelSection | undefined): readonly AbstractWidgetProps[] {
-    const widgets: AbstractWidgetProps[] = [];
+  public provideWidgets(stageId: string, _stageUsage: string, location: StagePanelLocation, _section?: StagePanelSection | undefined): ReadonlyArray<Widget> {
+    const widgets: Widget[] = [];
 
     // Widget to create and run validation tests (on right panel).
-    if(stageId === "DefaultFrontstage" && location === StagePanelLocation.Right) {
+    if(location === StagePanelLocation.Right) {
 
-      const testWidget: AbstractWidgetProps = {
+      const testWidget: Widget = {
         id: "runValidationTests",
         label: "Validation Tests",
-        getWidgetContent: () => {
-          return <ValidationTestWidget />;
-        },
+        content: <ValidationTestWidget />
       };
 
       widgets.push(testWidget);
     }
 
     // Widget to view validation results: Table and element colorization (on bottom panel).
-    if (stageId === "DefaultFrontstage" && location === StagePanelLocation.Bottom) {
+    if (location === StagePanelLocation.Bottom) {
 
-      const widget: AbstractWidgetProps = {
+      const widget: Widget = {
         id: "viewValidationResults",
         label: "Validation Results",
-        getWidgetContent: () => {
-          return <ValidationResultsWidget />;
-        },
+        content: <ValidationResultsWidget />
       };
 
       widgets.push(widget);

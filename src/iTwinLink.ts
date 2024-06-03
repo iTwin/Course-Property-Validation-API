@@ -39,12 +39,18 @@ export class ITwinLink {
                 ON segment.TargetECInstanceId = pipe.SourceECInstanceId
                 JOIN OpenPlant_3D.PIPELINE_HAS_SEGMENT pipeline 
                 ON pipeline.TargetECInstanceId = segment.SourceECInstanceId`
-          
-          for await (const row of iModel.query(query)) {
-            if (!pipelines.some((pipeline) => pipeline.id ===  row[0]))
-                pipelines.push({id: row[0], pipes:[]})
-            pipelines.find((pipeline) => pipeline.id === row[0])?.pipes.push(row[1]);
-          }
+        
+            try {
+                for await (const row of iModel.query(query)) {
+                    if (!pipelines.some((pipeline) => pipeline.id ===  row[0]))
+                        pipelines.push({id: row[0], pipes:[]})
+                    pipelines.find((pipeline) => pipeline.id === row[0])?.pipes.push(row[1]);
+                }
+            } catch (e: any) {
+                console.log(e.message);
+                alert(e.message);
+            }
+
         }
         
         ITwinLink.pipelines = pipelines;

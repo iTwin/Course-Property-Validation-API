@@ -4,19 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IModelApp } from "@itwin/core-frontend";
-import { UnitConversion } from "@itwin/core-quantity";
+import { UnitConversionProps } from "@itwin/core-quantity";
 import { SchemaUnitProvider } from "@itwin/ecschema-metadata";
 import { ECSchemaRpcLocater } from "@itwin/ecschema-rpcinterface-common";
 
 export default class Utils {
 
     // variable to cache quantity conversions.
-    private static conversions: {[index: string]: UnitConversion} = {};
+    private static conversions: {[index: string]: UnitConversionProps} = {};
 
     // iModel quantity formatter to convert units.
     public static async convertQuantity(quantity: number, sourceUnit: string, targetUnit: string) {
         let newQuantity;
-        let conversion: UnitConversion;
+        let conversion: UnitConversionProps;
         // signature to identify a particular quantity conversion.
         const conversionSignature = sourceUnit + "_" + targetUnit;
 

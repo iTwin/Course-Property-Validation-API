@@ -8,12 +8,11 @@ The application is built on top the [iTwin Viewer](https://developer.bentley.com
 
 In addition to cloning the iTwin-Viewer, this app requires the following dependencies:
 
-```"@itwin/itwinui-react": "^1.40.0",
-"@itwin/itwinui-react": "^1.40.0",
-"@itwin/property-validation-client": "^0.3.1",
-"@itwin/ecschema-rpcinterface-common": "^3.1.3",
-"@itwin/ecschema-metadata": "^3.1.3",
-"date-fns": "^2.28.0",
+```"@itwin/itwinui-react": "^2.12.26",
+"@itwin/property-validation-client": "^0.4.1",
+"@itwin/ecschema-rpcinterface-common": "^4.6.1",
+"@itwin/ecschema-metadata": "^4.6.1",
+"date-fns": "^3.6.0",
 ```
 
 ## Overview
