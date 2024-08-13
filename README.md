@@ -1,5 +1,7 @@
 # NOTE: The Validation API has been discontinued.
 
+In alignment with our ongoing portfolio simplification efforts, Bentley has made the strategic decision to discontinue support for iTwin Design Validation, effective August 30, 2024.
+
 # Insulation Validation App
 
 This repository is part of the iTwin Platform Validation API course. Please click [here](https://education.bentley.com/LearningPaths/guided-learningpaths-635082) to access the full course content. This documentation provides a high-level overview of the validation app designed in the course. The key focus is how the custom UI components interact with the validation API.
